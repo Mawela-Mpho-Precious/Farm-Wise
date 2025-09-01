@@ -1,0 +1,178 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmwise - Smart Farming</title>
+  <style>
+    body {
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      scroll-behavior: smooth;
+      color: #333;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #2d6a4f;
+      padding: 15px;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    section {
+      min-height: 100vh;
+      padding: 100px 20px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1, h2, h3 {
+      color: hsl(147, 29%, 40%);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 18px;
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ---------- PAGE 1 ---------- */
+    .home {
+      background: url('{% static "images/farmhouse.jpg" %}') no-repeat center center/cover;
+      text-align: center;
+      position: relative;
+      color: white;
+    }
+    .home::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 0;
+    }
+    .home .brand,
+    .home h1,
+    .home .signup-btn {
+      position: relative;
+      z-index: 1;
+    }
+    .brand {
+      font-size: 64px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 40px;
+    }
+    .signup-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #40916c;
+      color:white;
+      padding: 10px 20px;
+      border:none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .signup-btn:hover { background:#1b4332; }
+
+    /* ---------- PAGE 2 ---------- */
+    .about {
+      background: #f8f9fa;
+      text-align: center;
+    }
+    .features {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .feature {
+      width: 250px;
+      text-align: center;
+    }
+    .feature img {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .feature p {
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    footer {
+      background:#2d6a4f;
+      color:white;
+      text-align:center;
+      padding:20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">What to Expect</a>
+  </nav>
+
+  <!-- Page 1 -->
+  <section id="home" class="home">
+    <div class="brand">Farmwise</div>
+    <button class="signup-btn">Sign Up</button>
+    <h1>YOUR PARTNER IN WEATHER AND SMART FARMING!!</h1>
+  </section>
+
+  <!-- Page 2 -->
+  <section id="about" class="about">
+    <h3>What You Can Expect</h3>
+
+    <div class="features">
+      <div class="feature">
+        <img src="{% static 'images/Weather.jpg' %}" alt="Weather Forecasts">
+        <p>🌦 Accurate Local Weather Forecasts – Tailored to your farm’s location</p>
+      </div>
+      <div class="feature">
+        <img src="{% static 'images/Guidance.jpg'%}" alt="Crop Guidance">
+        <p>🌱 Crop-Specific Guidance – Plant, water, and harvest at the right time</p>
+      </div>
+      <div class="feature">
+        <img src="{% static 'images/alerts.jpeg'%}" alt="Early Warnings">
+        <p>📢 Early Warning Alerts – Stay ahead of storms, droughts, and frost</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 50px;">Mission Statement</h3>
+    <p>
+      To help farmers increase yields, reduce losses, and build resilience in the face of climate change — 
+      using technology that works for you, not against you.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Farmwise. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
