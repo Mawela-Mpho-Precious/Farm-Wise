@@ -197,9 +197,9 @@ Once a month is selected:
 ### 6. **Garden Journal**  
 - Record farming activities.  
 - Upload photos & share entries with community.  
-![Garden Journal](Static/images/Journal1.png)
-![Garden Journal](Static/images/Journal2.png)
-![Garden Journal](Static/images/Journal3.png)
+![Garden Journal](static/images/Journal1.png)
+![Garden Journal](static/images/Journal2.png)
+![Garden Journal](static/images/Journal3.png)
 
 
 ---
@@ -207,10 +207,10 @@ Once a month is selected:
 ### 7. **AI Chatbot (Farmwise Assistant)**  
 - Provides instant farming advice.  
 - Personalized responses using real-time data.  
-![AI Chatbot](Static/images/chatbot1.png)
-![AI Chatbot](Static/images/chatbot2.png)
-![AI Chatbot](Static/images/chatbot3.png)
-![AI Chatbot](Static/images/chatbot4.png)  
+![AI Chatbot](static/images/chatbot1.png)
+![AI Chatbot](static/images/chatbot2.png)
+![AI Chatbot](static/images/chatbot3.png)
+![AI Chatbot](static/images/chatbot4.png)  
 
 ---
 
