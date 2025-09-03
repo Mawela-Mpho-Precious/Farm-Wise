@@ -127,7 +127,7 @@ Our system includes multiple interactive pages designed for farmers.
 - Validates inputs (unique email, strong password).  
 - Stores user details securely in the database.  
 - May send confirmation email.  
-![Sign Up](static/images/signUp.png) 
+![Sign Up](static/images/signUp.jpg) 
 
 ---
 
