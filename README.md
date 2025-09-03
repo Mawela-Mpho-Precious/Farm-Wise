@@ -196,7 +196,7 @@ Once a month is selected:
 ### 6. **Garden Journal**  
 - Record farming activities.  
 - Upload photos & share entries with community.  
-![Garden Journal](static/images/Journal1.jpg)
+![Garden Journal](static/images/journal1.jpg)
 ![Garden Journal](static/images/Journal2.jpg)
 ![Garden Journal](static/images/Journal3.jpg)
 
