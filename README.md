@@ -55,7 +55,8 @@ Our system follows a **3-Tier Architecture**:
 **APIs**: OpenWeatherMap, LANDBOT  
 **Dev Tools**: VS Code, Git, GitHub  
 
-### Installation  
+### Installation 
+ **For implementation Check Final Commit
 ```bash
 # Clone repo
 git clone https://github.com/your-username/SmartWeatherAdvisorySystem.git
