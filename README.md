@@ -93,14 +93,15 @@ Our system includes multiple interactive pages designed for farmers.
 ### 1. **Home Page**  
 - Overview of the system (mission, weather forecasts, crop-specific guidance, early alerts).  
 - Scrollable layout for easy navigation.  
-`![Home Page](docs/screenshots/home.png)`  `![Home Page](docs/screenshots/homes.png)`
+![Home Page](static/images/home.jpg)
+![Home Page](static/images/homes.jpg)`
 
 ---
 
 ### 2. **Selection Page**  
 - Allows farmers to select preferences using checkboxes.  
 - Helps tailor recommendations.  
-`![Selection Page](docs/screenshots/selection.png)`  
+![Selection Page](static/images/click.jpg)  
 
 ---
 
@@ -111,12 +112,11 @@ Our system includes multiple interactive pages designed for farmers.
   - Unit Test Performance Bar Chart  
   - Pest Distribution Pie Chart  
   - Insights Panel (color-coded alerts & advice)  
-`![Weather Dashboard](docs/screenshots/weather_dashboard.png)`
-`![Weather Dashboard](docs/screenshots/weather_dashboards.png)`
-`![Weather Dashboard](docs/screenshots/weather_dash.png)`
-`![Weather Dashboard](docs/screenshots/weather_board.png)`
-`![Weather Dashboard](docs/screenshots/weathers_dashboard.png)`     
-
+![Weather Dashboard](static/images/dash.jpg)
+![Weather Dashboard](static/images/dashboard.jpg)
+![Weather Dashboard](static/images/unitTest.jpg)
+![Weather Dashboard](static/images/pie.jpg)
+![Weather Dashboard](static/images/insights.jpg)
 ---
 
 ### 4. **Sign Up Page**  
@@ -127,7 +127,7 @@ Our system includes multiple interactive pages designed for farmers.
 - Validates inputs (unique email, strong password).  
 - Stores user details securely in the database.  
 - May send confirmation email.  
-`![Sign Up](docs/screenshots/signup.png)`  
+![Sign Up](static/images/signUp.png) 
 
 ---
 
@@ -138,7 +138,7 @@ Our system includes multiple interactive pages designed for farmers.
 - Verifies credentials against the database.  
 - Grants access to features (weather dashboard, journal, chatbot, etc.).  
 - Displays error + reset option if credentials are wrong.  
- `![Login](docs/screenshots/login.png)`  
+![Login](static/images/Login.jpg)  
 
 ---
 
@@ -165,11 +165,10 @@ The Farm Weather Dashboard enables farmers to make **informed decisions** about:
 
 This helps maximize yield and reduce losses caused by climate variability.  
 
-![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)
-![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)
-![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)
-![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)`
-
+![Farm Weather Dashboard](static/images/farmWeather.jpg)
+![Farm Weather Dashboard](static/images/current.jpg)
+![Farm Weather Dashboard](static/images/tomatoes.jpg)
+![Farm Weather Dashboard](static/images/timeline.jpg)
 
 ### 6. **Smart Planting Calendar**  
 - Suggests optimal planting & harvesting times.  
@@ -179,27 +178,27 @@ Once a month is selected:
 1.The system highlights which days are optimal for planting specific crops.
 2.It provides information on expected temperature conditions, such as days with mild temperatures suitable for planting.
 3.Users can use this guidance to schedule planting activities to maximize crop growth and minimize risks associated with adverse weather. 
-![Planting Calendar](docs/screenshots/planting_calendar.png)
-![Planting Calendar](docs/screenshots/planting_calendar.png)
-![Planting Calendar](docs/screenshots/planting_calendar.png)
+![Planting Calendar](static/images/calendar.jpg)
+![Planting Calendar](static/images/planting.jpg)
+![Planting Calendar](static/images/plantings.jpg)
 
 ---
 
 ### 5. **Pest & Disease Database**  
 - Search pests and diseases affecting specific crops.  
 - Shows prevention and treatment methods.  
-![Pest Database](docs/screenshots/pest_database.png)
-![Pest Database](docs/screenshots/pest_database.png)
-![Pest Database](docs/screenshots/pest_database.png) 
+![Pest Database](static/images/pest.jpg)
+![Pest Database](static/images/snails.jpg)
+![Pest Database](static/images/tips.jpg) 
 
 ---
 
 ### 6. **Garden Journal**  
 - Record farming activities.  
 - Upload photos & share entries with community.  
-![Garden Journal](static/images/Journal1.jpgg)
+![Garden Journal](static/images/Journal1.jpg)
 ![Garden Journal](static/images/Journal2.jpg)
-![Garden Journal](static/images/Journal3.jpgg)
+![Garden Journal](static/images/Journal3.jpg)
 
 
 ---
@@ -209,8 +208,8 @@ Once a month is selected:
 - Personalized responses using real-time data.  
 ![AI Chatbot](static/images/chatbot1.jpg)
 ![AI Chatbot](static/images/chatbot2.jpg)
-![AI Chatbot](static/images/chatbot3.jpgg)
-![AI Chatbot](static/images/chatbot4.jpgg)  
+![AI Chatbot](static/images/chatbot3.jpg)
+![AI Chatbot](static/images/chatbot4.jpg)  
 
 ---
 
