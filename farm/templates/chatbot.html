@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmWise Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            padding: 1rem 1.2rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-item i {
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section under navbar */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: #e9f5ec;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: #2e7d32;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Main Section */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .chat-container {
+            background: #fff;
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+        }
+
+        iframe {
+            border: none;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+            .nav-menu li {
+                width: 100%;
+            }
+            .nav-item {
+                width: 100%;
+                padding: 12px;
+            }
+            header h1 {
+                font-size: 1.6rem;
+            }
+            .chat-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#dashboard" class="logo">
+                <i class="fas fa-seedling"></i>
+                FarmSmart
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-item active" onclick="showPage('dashboard')">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a></li>
+                <li><a href="#planting-calendar" class="nav-item" onclick="showPage('planting-calendar')">
+                    <i class="fas fa-calendar-alt"></i>
+                    Planting Calendar
+                </a></li>
+                <li><a href="#pest-database" class="nav-item" onclick="showPage('pest-database')">
+                    <i class="fas fa-bug"></i>
+                    Pest Database
+                </a></li>
+                <li><a href="{% url 'journal' %}" class="nav-item" onclick="showPage('journal')">
+                    <i class="fas fa-journal-whills"></i>
+                    Garden Journal
+                </a></li>
+                <li><a href="{% url 'chatbot' %}" class="nav-item" onclick="showPage('chatbot')">
+                    <i class="fas fa-robot"></i>
+                    Chatbot
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <h1>FarmWise Assistant</h1>
+        <p>Your virtual guide for growing vegetables and fruits</p>
+    </header>
+
+    <!-- Main Chat Section -->
+    <main>
+        <div class="chat-container">
+            <iframe src="https://landbot.online/v3/H-3114526-70LU8AJX8I9N6A1V/index.html"></iframe>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 FarmWise Assistant. All rights reserved.
+    </footer>
+</body>
+</html>
+
+
+
+

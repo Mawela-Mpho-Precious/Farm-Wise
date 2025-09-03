@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Journal - GardenSense</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary: #1565c0;
+            --accent: #ff8f00;
+            --text-light: #f5f5f5;
+            --text-dark: #333;
+            --card-bg: #ffffff;
+            --background: #e8f5e9;
+            --warning: #ff6d00;
+            --danger: #d32f2f;
+            --journal-bg: #f1f8e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--journal-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: var(--text-light);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--primary-dark);
+        }
+
+        .page-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Journal Layout */
+        .journal-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Journal Form */
+        .journal-form-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .journal-form-container h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag i {
+            cursor: pointer;
+        }
+
+        .image-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Journal Entries */
+        .journal-entries {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-box {
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .entry-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .entry-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .entry-title {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+        }
+
+        .entry-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .entry-weather {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+        }
+
+        .entry-content {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .entry-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .entry-images img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .entry-images img:hover {
+            transform: scale(1.05);
+        }
+
+        .entry-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .entry-tag {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .pest-tag {
+            background-color: var(--warning);
+        }
+
+        .plant-tag {
+            background-color: var(--primary);
+        }
+
+        /* On This Day Section */
+        .on-this-day {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .on-this-day h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .flashback-entry {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .flashback-date {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .journal-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .journal-form-container {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <h1>GardenSense</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}" class="btn btn-journal">Dashboard</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-book"></i> Garden Journal</h2>
+            <p>Record your gardening journey and track progress over time</p>
+        </div>
+    </section>
+
+    <!-- Journal Layout -->
+    <main class="container">
+        <div class="journal-layout">
+            <!-- Journal Form -->
+            <div class="journal-form-container">
+                <h3>New Journal Entry</h3>
+                <form id="journalForm">
+                    <div class="form-group">
+                        <label for="entry-title">Title</label>
+                        <input type="text" id="entry-title" placeholder="What did you do today?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entry-content">Notes</label>
+                        <textarea id="entry-content" placeholder="Record your observations, ideas, or tasks completed..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entry-plants">Plants (select multiple)</label>
+                        <select id="entry-plants" multiple>
+                            <option value="tomato">Tomatoes</option>
+                            <option value="pepper">Bell Peppers</option>
+                            <option value="cucumber">Cucumbers</option>
+                            <option value="zucchini">Zucchini</option>
+                            <option value="carrot">Carrots</option>
+                            <option value="lettuce">Lettuce</option>
+                            <option value="rose">Roses</option>
+                            <option value="lavender">Lavender</option>
+                        </select>
+                        <div class="tags-container" id="plant-tags"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entry-pests">Pests/Diseases (select multiple)</label>
+                        <select id="entry-pests" multiple>
+                            <option value="aphid">Aphids</option>
+                            <option value="hornworm">Tomato Hornworm</option>
+                            <option value="powdery-mildew">Powdery Mildew</option>
+                            <option value="slug">Slugs</option>
+                            <option value="caterpillar">Cabbage Caterpillar</option>
+                        </select>
+                        <div class="tags-container" id="pest-tags"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entry-weather">Weather Conditions</label>
+                        <div class="entry-weather">
+                            <i class="fas fa-sun"></i> Sunny, 25°c
+                        </div>
+                        <small>Automatically pulled from your location</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="entry-images">Upload Photos</label>
+                        <input type="file" id="entry-images" multiple accept="image/*">
+                        <div class="image-preview" id="image-preview"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn"><i class="fas fa-save"></i> Save Entry</button>
+                </form>
+            </div>
+
+            <!-- Journal Entries -->
+            <div class="journal-entries">
+                <div class="search-box">
+                    <input type="text" placeholder="Search your journal entries...">
+                    <button class="btn"><i class="fas fa-search"></i> Search</button>
+                </div>
+
+                <!-- Entry 1 -->
+                <div class="entry-card">
+                    <div class="entry-header">
+                        <div>
+                            <h3 class="entry-title">First Tomato Harvest</h3>
+                            <div class="entry-date">1 September, 2025 - 3:45 PM</div>
+                        </div>
+                        <div class="entry-weather">
+                            <i class="fas fa-sun"></i> Sunny, 27°C
+                        </div>
+                    </div>
+                    <div class="entry-content">
+                        <p>Harvested the first ripe tomatoes from the garden today! The Heirloom varieties are particularly flavorful this year. Noticed a few leaves with yellow spots on the lower plants - need to keep an eye on this.</p>
+                    </div>
+                    <div class="entry-images">
+                        <img src="https://images.unsplash.com/photo-1591824438708-ce405f4fa08c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Tomato harvest">
+                        <img src="https://images.unsplash.com/photo-1561136594-7f68413baa99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Tomato plant">
+                    </div>
+                    <div class="entry-tags">
+                        <span class="entry-tag plant-tag">Tomatoes</span>
+                        <span class="entry-tag plant-tag">Basil</span>
+                        <span class="entry-tag pest-tag">Yellow Leaves</span>
+                        <span class="entry-tag">Harvest</span>
+                    </div>
+                </div>
+
+                <!-- Entry 2 -->
+                <div class="entry-card">
+                    <div class="entry-header">
+                        <div>
+                            <h3 class="entry-title">Companion Planting</h3>
+                            <div class="entry-date"> 5, Aug 2025- 5:30 PM</div>
+                        </div>
+                        <div class="entry-weather">
+                            <i class="fas fa-cloud-sun"></i> Partly Cloudy, 25°C
+                        </div>
+                    </div>
+                    <div class="entry-content">
+                        <p>Planted basil around the tomato plants as a companion planting strategy. Also added marigolds to the vegetable beds to help deter pests naturally. Watered everything with compost tea.</p>
+                    </div>
+                    <div class="entry-images">
+                        <img src="https://images.unsplash.com/photo-1595433611344-092d5a4d8b4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Basil plant">
+                        <img src="https://images.unsplash.com/photo-1612686635546-85f3a409eea5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Marigolds">
+                    </div>
+                    <div class="entry-tags">
+                        <span class="entry-tag plant-tag">Tomatoes</span>
+                        <span class="entry-tag plant-tag">Basil</span>
+                        <span class="entry-tag plant-tag">Marigolds</span>
+                        <span class="entry-tag">Companion Planting</span>
+                    </div>
+                </div>
+
+                <!-- Entry 3 -->
+                <div class="entry-card">
+                    <div class="entry-header">
+                        <div>
+                            <h3 class="entry-title">Aphid Problem on Roses</h3>
+                            <div class="entry-date">August 28, 2025 - 4:15 PM</div>
+                        </div>
+                        <div class="entry-weather">
+                            <i class="fas fa-cloud"></i> Cloudy, 32°c
+                        </div>
+                    </div>
+                    <div class="entry-content">
+                        <p>Noticed a significant aphid infestation on the rose bushes. Tried spraying them off with water and applied a neem oil solution. Will monitor daily to see if further action is needed. Ladybugs would be helpful right now!</p>
+                    </div>
+                    <div class="entry-images">
+                        <img src="https://images.unsplash.com/photo-1618811603446-62fbd9c7d2c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Aphids on rose">
+                        <img src="https://images.unsplash.com/photo-1595434260493-2742a0725b31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Neem oil spray">
+                    </div>
+                    <div class="entry-tags">
+                        <span class="entry-tag plant-tag">Roses</span>
+                        <span class="entry-tag pest-tag">Aphids</span>
+                        <span class="entry-tag">Neem Oil</span>
+                        <span class="entry-tag">Pest Control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- On This Day Section -->
+        <div class="on-this-day">
+            <h3><i class="fas fa-history"></i> On This Day</h3>
+            
+            <div class="flashback-entry">
+                <div class="flashback-date">September 3, 2025</div>
+                <p>Planted second crop of green beans and zucchini. The first zucchini harvest was amazing this year!</p>
+                <div class="entry-tags">
+                    <span class="entry-tag plant-tag">Green Beans</span>
+                    <span class="entry-tag plant-tag">Zucchini</span>
+                    <span class="entry-tag">Planting</span>
+                </div>
+            </div>
+            
+            <div class="flashback-entry">
+                <div class="flashback-date">August 25, 2025</div>
+                <p>Installed new drip irrigation system in the vegetable beds. Should save time watering and reduce water waste.</p>
+                <div class="entry-tags">
+                    <span class="entry-tag">Irrigation</span>
+                    <span class="entry-tag">Watering</span>
+                    <span class="entry-tag">Garden Improvement</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>GardenSense</h3>
+                <p>Your all-in-one gardening companion for better harvests and healthier plants.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="weather.html">Weather Forecast</a></li>
+                    <li><a href="calendar.html">Planting Calendar</a></li>
+                    <li><a href="pests.html">Pest Database</a></li>
+                    <li><a href="journal.html">Garden Journal</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Have questions or suggestions?</p>
+                <p>Email: farmWise@gardensense.com</p>
+                <p>Phone: (012) 123-4567</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 GardenSense. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data for plants and pests
+        const plants = [
+            { id: 'tomato', name: 'Tomatoes' },
+            { id: 'pepper', name: 'Bell Peppers' },
+            { id: 'cucumber', name: 'Cucumbers' },
+            { id: 'zucchini', name: 'Zucchini' },
+            { id: 'carrot', name: 'Carrots' },
+            { id: 'lettuce', name: 'Lettuce' },
+            { id: 'rose', name: 'Roses' },
+            { id: 'lavender', name: 'Lavender' }
+        ];
+
+        const pests = [
+            { id: 'aphid', name: 'Aphids' },
+            { id: 'hornworm', name: 'Tomato Hornworm' },
+            { id: 'powdery-mildew', name: 'Powdery Mildew' },
+            { id: 'slug', name: 'Slugs' },
+            { id: 'caterpillar', name: 'Cabbage Caterpillar' }
+        ];
+
+        // Form submission handler
+        document.getElementById('journalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('entry-title').value;
+            
+            // In a real application, this would save to a database
+            // For now, we'll just show an alert and clear the form
+            alert(Journal entry "${title}" saved successfully!);
+            document.getElementById('journalForm').reset();
+            document.getElementById('plant-tags').innerHTML = '';
+            document.getElementById('pest-tags').innerHTML = '';
+            document.getElementById('image-preview').innerHTML = '';
+        });
+
+        // Image preview functionality
+        document.getElementById('entry-images').addEventListener('change', function(e) {
+            const preview = document.getElementById('image-preview');
+            preview.innerHTML = '';
+            
+            for (const file of e.target.files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Tag selection for plants
+        document.getElementById('entry-plants').addEventListener('change', function(e) {
+            const tagsContainer = document.getElementById('plant-tags');
+            tagsContainer.innerHTML = '';
+            
+            for (const option of e.target.selectedOptions) {
+                const plant = plants.find(p => p.id === option.value);
+                if (plant) {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.innerHTML = ${plant.name} <i class="fas fa-times" data-value="${plant.id}"></i>;
+                    tagsContainer.appendChild(tag);
+                }
+            }
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('#plant-tags .fa-times').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    const option = e.target.querySelector(option[value="${value}"]);
+                    if (option) option.selected = false;
+                    this.parentElement.remove();
+                });
+            });
+        });
+
+        // Tag selection for pests
+        document.getElementById('entry-pests').addEventListener('change', function(e) {
+            const tagsContainer = document.getElementById('pest-tags');
+            tagsContainer.innerHTML = '';
+            
+            for (const option of e.target.selectedOptions) {
+                const pest = pests.find(p => p.id === option.value);
+                if (pest) {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.innerHTML = ${pest.name} <i class="fas fa-times" data-value="${pest.id}"></i>;
+                    tagsContainer.appendChild(tag);
+                }
+            }
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('#pest-tags .fa-times').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    const option = e.target.querySelector(option[value="${value}"]);
+                    if (option) option.selected = false;
+                    this.parentElement.remove();
+                });
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate automatic weather data
+            const weatherElement = document.querySelector('.entry-weather');
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const now = new Date();
+            
+            // In a real app, this would come from a weather API
+            const fakeWeather = {
+                condition: 'Sunny',
+                temperature: 78,
+                icon: 'fa-sun'
+            };
+            
+            weatherElement.innerHTML = <i class="fas ${fakeWeather.icon}"></i> ${fakeWeather.condition}, ${fakeWeather.temperature}°F;
+        });
+    </script>
+</body>
+</html>

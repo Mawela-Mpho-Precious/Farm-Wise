@@ -21,7 +21,6 @@
             position: relative;
         }
        
-
         /* Overlay for better readability */
         body::before {
             content: '';
@@ -117,7 +116,6 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-
         h1 {
             text-align: center;
             color: #2c3e50;
@@ -313,7 +311,7 @@
 
         input[type="text"]:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: #3a98db;
             background: white;
         }
 
@@ -558,64 +556,593 @@
             background: rgba(52, 152, 219, 0.7);
         }
 
-        /* Calendar controls */
-        .calendar-controls {
+        /* Location detection styles */
+       さんが作成したテンプレート: .location-options {
             display: flex;
+            flex-direction: column;
             gap: 1rem;
-            margin-bottom: 2rem;
-            justify-content: center;
+            margin-bottom: 1.5rem;
         }
 
-        .calendar-view-toggle {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid #3498db;
-            background: white;
-            color: #3498db;
+        .location-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(236, 240, 241, 0.9);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .calendar-view-toggle:hover {
-            background: #3498db;
-            color: white;
+        .location-option:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
         }
 
-        /* Upcoming events */
-        .event-list {
-            margin-top: 1.5rem;
+        .location-option i {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: #3498db;
         }
 
-        .event-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: rgba(236, 240, 241, 0.8);
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-        }
-
-        .event-date {
-            font-weight: bold;
-            min-width: 80px;
-            color: #2c3e50;
-        }
-
-        .event-details {
+        .location-option-content {
             flex: 1;
         }
 
-        /* Prevention tips */
-        .prevention-tips {
-            background: rgba(232, 244, 248, 0.8);
-            padding: 1.5rem;
+        .location-option h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+        }
+
+        .location-option p {
+            margin: 0;
+            color: #7f8c8d;
+        }
+
+        .location-loading {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .location-loading i {
+            animation: spin 1s linear infinite;
+            font-size: 2rem;
+            color: #3498db;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .location-error {
+            display: none;
+            color: #e74c3c;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(231, 76, 60, 0.1);
             border-radius: 8px;
-            margin-top: 2rem;
+            margin-top: 1rem;
+        }
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+      
+
+        .planting-calendar {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        header {
+            background: #4a7c4a;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .calendar-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #e9f5e9;
+            border-bottom: 2px solid #d0e4d0;
+        }
+
+        .month-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        select {
+            padding: 12px 20px;
+            border: 2px solid #4a7c4a;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            background: #f0f7f0;
+        }
+
+        .view-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            padding: 10px 20px;
+            background: #5d935d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: #3a613a;
+            transform: scale(1.05);
+        }
+
+        .view-btn:hover {
+            background: #4a7c4a;
+        }
+
+        .calendar-container {
+            padding: 20px;
+        }
+
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            padding: 15px 0;
+            border-bottom: 2px solid #e0e0e0;
+            color: #3a613a;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .calendar-day {
+            background: #f8fbf8;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 150px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid #e0f0e0;
+        }
+
+        .calendar-day:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #a8c4a8;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0f0e0;
+        }
+
+        .day-number {
+            font-weight: bold;
+            color: #3a613a;
+            font-size: 1.2rem;
+        }
+
+        .day-name {
+            color: #6e8e6e;
+            font-size: 0.9rem;
+        }
+
+        .planting-suggestions {
+            margin-top: 10px;
+        }
+
+        .suggestion-item {
+            background: #e9f5e9;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .suggestion-item i {
+            color: #4a7c4a;
+        }
+
+        .empty-day {
+            text-align: center;
+            color: #a8c4a8;
+            padding: 20px 0;
+            font-style: italic;
+        }
+
+        .weather-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .month-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #3a613a;
+            margin: 20px 0;
+            padding: 10px;
+            border-bottom: 2px solid #e0f0e0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #4a7c4a;
+            color: white;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-grid {
+                gap: 8px;
+            }
+            
+            .calendar-day {
+                padding: 10px;
+                min-height: 120px;
+            }
+            
+            .calendar-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar-header {
+                display: none;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .day-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .month-tip {
+                padding: 15px;
+                border-radius: 8px;
+                margin: 15px 0;
+                border-left: 4px solid #4a7c4a;
+            }
+        }
+
+        .pest-database {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: #8e44ad;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .database-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-section {
+            display: flex;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #8e44ad;
+            border-radius: 8px 0 0 8px;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 12px 20px;
+            background: #8e44ad;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #733d90;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 15px;
+            background: #e9ecef;
+            color: #495057;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #8e44ad;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background: #d1d5db;
+        }
+
+        .database-container {
+            padding: 20px;
+        }
+
+        .pest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .pest-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .pest-image {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 3rem;
+        }
+
+        .pest-card h3 {
+            color: #8e44ad;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .pest-type {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #e8d0f2;
+            color: #8e44ad;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .affected-crops {
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .affected-crops strong {
+            color: #856404;
+        }
+
+        .pest-description {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .solution-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f3f5;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .solution-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .prevention-tips {
+            background: #e7f5ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .prevention-tips h2 {
+            color: #17a2b8;
+            margin-bottom: 15px;
+        }
+
+        .prevention-list {
+            list-style: none;
+            columns: 2;
+            column-gap: 20px;
+        }
+
+        .prevention-list li {
+            padding: 8px 0;
+            break-inside: avoid;
+            display: flex;
+            align-items: flex-start;
+            border: none;
+            gap: 10px;
+        }
+
+        .prevention-list li:before {
+            content: "•";
+            color: #17a2b8;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            font-style: italic;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #8e44ad;
+            color: white;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .pest-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .database-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-section {
+                min-width: 100%;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .prevention-list {
+                columns: 1;
+            }
+            .logout-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                padding: 8px 16px;
+                background-color: #f44336;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            
+            .logout-btn:hover {
+                background-color: #d32f2f;
+            }
         }
     </style>
 </head>
 <body>
-     <!-- Navigation Bar -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#dashboard" class="logo">
@@ -635,9 +1162,21 @@
                     <i class="fas fa-bug"></i>
                     Pest Database
                 </a></li>
+                <li><a href="{% url 'journal' %}" class="nav-item" onclick="showPage('journal')">
+                    <i class="fas fa-journal-whills"></i>
+                    Garden Journal
+                </a></li>
+                <li>
+               <a href="{% url 'chatbot' %}" class="nav-item">
+               <i class="fas fa-robot"></i>
+               Chatbot
+               </a>
+</li>
+
             </ul>
         </div>
     </nav>
+
 
     <!-- Dashboard Page -->
     <div id="dashboard" class="page active">
@@ -656,14 +1195,46 @@
             <!-- Location setup card -->
             <div class="location-setup card">
                 <h2>Let's set up your location</h2>
-                <p>Enter your location below to see the current weather, 5-day forecast, and what we have suggested for your farm.</p>
+                <p>Choose how you'd like to set your location to see the current weather, 5-day forecast, and farming suggestions.</p>
             </div>
 
-            <!-- Location search form -->
-            <form method="POST">
+            <!-- Location options -->
+            <div class="location-options">
+                <div class="location-option" onclick="detectLocation()">
+                    <i class="fas fa-location-arrow"></i>
+                    <div class="location-option-content">
+                        <h3>Use My Current Location</h3>
+                        <p>Automatically detect your location using your device's GPS</p>
+                    </div>
+                </div>
+                
+                <div class="location-option" onclick="document.getElementById('manual-location-form').style.display='block'">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="location-option-content">
+                        <h3>Enter Location Manually</h3>
+                        <p>Type in your city name or address</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading indicator -->
+            <div class="location-loading" id="location-loading">
+                <i class="fas fa-spinner"></i>
+                <p>Detecting your location...</p>
+            </div>
+
+            <!-- Error message -->
+            <div class="location-error" id="location-error">
+                <p>Unable to detect your location. Please try again or enter it manually.</p>
+            </div>
+
+            <!-- Manual location form (initially hidden) -->
+            <form method="POST" id="manual-location-form" style="display: none;">
                 {% csrf_token %}
-                {{ form.location }}
-                <button type="submit">Search</button>
+                <div style="display: flex; gap: 0.5rem;">
+                    {{ form.location }}
+                    <button type="submit">Search</button>
+                </div>
             </form>
 
             <!-- Daily forecast -->
@@ -722,192 +1293,130 @@
             </div>
         </div>
     </div>
+    <button class="logout-btn" onclick="logoutUser()">Logout</button>
 
     <!-- Planting Calendar Page -->
-    <div id="planting-calendar" class="page">
-        <div class="container">
-            <h1><i class="fas fa-calendar-alt"></i> Planting Calendar</h1>
-            
-            <div class="calendar-controls">
-                <button class="calendar-view-toggle active">Month View</button>
-                <button class="calendar-view-toggle">List View</button>
-                <button class="calendar-view-toggle">Crop Timeline</button>
+     <div class="planting-calendar" class="page">
+        <header>
+            <h1><i class="fas fa-seedling"></i> Smart Planting Calendar</h1>
+            <p class="subtitle">Plan your garden based on weather conditions and optimal planting times</p>
+        </header>
+
+        <div class="calendar-controls">
+            <div class="month-selector">
+                <label for="month-select">Select Month:</label>
+                <select id="month-select">
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8" selected>September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
+                </select>
             </div>
 
-            <div class="calendar-month">
-                <h2>August 2024</h2>
-                <div class="calendar-grid">
-                    <div class="calendar-header">Sun</div>
-                    <div class="calendar-header">Mon</div>
-                    <div class="calendar-header">Tue</div>
-                    <div class="calendar-header">Wed</div>
-                    <div class="calendar-header">Thu</div>
-                    <div class="calendar-header">Fri</div>
-                    <div class="calendar-header">Sat</div>
-
-                    <!-- Calendar days with events -->
-                    <div class="calendar-day">
-                        <div class="day-number">1</div>
-                        <div class="calendar-event event-planting">Plant Tomatoes</div>
-                        <div class="calendar-event event-maintenance">Water seedlings</div>
-                    </div>
-                    <div class="calendar-day">
-                        <div class="day-number">2</div>
-                    </div>
-                    <div class="calendar-day">
-                        <div class="day-number">3</div>
-                    </div>
-                    <div class="calendar-day">
-                        <div class="day-number">4</div>
-                        <div class="calendar-event event-harvest">Harvest Carrots</div>
-                    </div>
-                    <div class="calendar-day">
-                        <div class="day-number">5</div>
-                    </div>
-                    <div class="calendar-day">
-                        <div class="day-number">6</div>
-                        <div class="calendar-event event-planting">Sow Lettuce</div>
-                    </div>
-                    <div class="calendar-day">
-                        <div class="day-number">7</div>
-                    </div>
-                    <!-- More days would go here in a complete calendar -->
-                </div>
-            </div>
-
-            <div class="upcoming-events">
-                <h2>Upcoming Planting Events</h2>
-                <div class="event-list">
-                    <div class="event-item">
-                        <div class="event-date">Aug 15</div>
-                        <div class="event-details">
-                            <h3>Plant Winter Squash</h3>
-                            <p>Direct sow in prepared beds</p>
-                        </div>
-                    </div>
-                    <div class="event-item">
-                        <div class="event-date">Aug 20</div>
-                        <div class="event-details">
-                            <h3>Start Kale Indoors</h3>
-                            <p>6-8 weeks before first frost</p>
-                        </div>
-                    </div>
-                    <div class="event-item">
-                        <div class="event-date">Sep 1</div>
-                        <div class="event-details">
-                            <h3>Transplant Broccoli</h3>
-                            <p>Move seedlings to garden beds</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="view-options">
+                <button class="view-btn active">Month View</button>
+                <button class="view-btn">List View</button>
             </div>
         </div>
-    </div>
+
+        <div class="calendar-container">
+            <h2 class="month-title">September Planting Calendar</h2>
+            
+            <div class="calendar-header">
+                <div>Sunday</div>
+                <div>Monday</div>
+                <div>Tuesday</div>
+                <div>Wednesday</div>
+                <div>Thursday</div>
+                <div>Friday</div>
+                <div>Saturday</div>
+            </div>
+
+            <div class="calendar-grid" id="calendar-days">
+                <!-- Calendar days will be generated here -->
+            </div>
+        </div>
 
     <!-- Pest & Disease Database Page -->
     <div id="pest-database" class="page">
-        <div class="container">
-            <h1><i class="fas fa-bug"></i> Pest & Disease Database</h1>
-            
+        <header>
+            <h1><i class="fas fa-bug"></i> Advanced Pest & Disease Database</h1>
+            <p class="subtitle">Identify and treat common garden pests and diseases</p>
+        </header>
+
+        <div class="database-controls">
             <div class="search-section">
-                <input type="text" placeholder="Search pests or diseases..." class="search-input">
-                <button class="search-btn">Search</button>
+                <input type="text" class="search-input" placeholder="Search pests or diseases..." id="searchInput">
+                <button class="search-btn" id="searchBtn">Search</button>
             </div>
 
-            <div class="pest-grid">
-                <div class="pest-card">
-                    <div class="pest-image">
-                        <i class="fas fa-bug fa-3x"></i>
-                    </div>
-                    <h3>Aphids</h3>
-                    <p><strong>Type:</strong> Insect Pest</p>
-                    <div class="affected-crops">
-                        <strong>Affects:</strong> Tomatoes, Peppers, Kale, Lettuce
-                    </div>
-                    <p><strong>Description:</strong> Small, soft-bodied insects that suck plant sap</p>
-                    <h4>Organic Solutions:</h4>
-                    <ul class="solution-list">
-                        <li>Spray with neem oil solution</li>
-                        <li>Introduce ladybugs or lacewings</li>
-                        <li>Use insecticidal soap spray</li>
-                        <li>Plant companion plants like marigolds</li>
-                    </ul>
-                </div>
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pest">Pests</button>
+                <button class="filter-btn" data-filter="disease">Diseases</button>
+                <button class="filter-btn" data-filter="tomato">Tomato</button>
+                <button class="filter-btn" data-filter="leafy">Leafy Greens</button>
+            </div>
+        </div>
 
-                <div class="pest-card">
-                    <div class="pest-image">
-                        <i class="fas fa-leaf fa-3x"></i>
-                    </div>
-                    <h3>Powdery Mildew</h3>
-                    <p><strong>Type:</strong> Fungal Disease</p>
-                    <div class="affected-crops">
-                        <strong>Affects:</strong> Squash, Cucumbers, Zucchini
-                    </div>
-                    <p><strong>Description:</strong> White powdery growth on leaves and stems</p>
-                    <h4>Organic Solutions:</h4>
-                    <ul class="solution-list">
-                        <li>Spray with baking soda solution</li>
-                        <li>Improve air circulation</li>
-                        <li>Water at base of plants</li>
-                        <li>Use milk spray (1:9 ratio with water)</li>
-                    </ul>
-                </div>
-
-                <div class="pest-card">
-                    <div class="pest-image">
-                        <i class="fas fa-worm fa-3x"></i>
-                    </div>
-                    <h3>Tomato Hornworm</h3>
-                    <p><strong>Type:</strong> Caterpillar Pest</p>
-                    <div class="affected-crops">
-                        <strong>Affects:</strong> Tomatoes, Peppers, Eggplants
-                    </div>
-                    <p><strong>Description:</strong> Large green caterpillars that eat leaves</p>
-                    <h4>Organic Solutions:</h4>
-                    <ul class="solution-list">
-                        <li>Hand-pick caterpillars</li>
-                        <li>Use BT (Bacillus thuringiensis) spray</li>
-                        <li>Encourage parasitic wasps</li>
-                        <li>Plant basil as companion</li>
-                    </ul>
-                </div>
-
-                <div class="pest-card">
-                    <div class="pest-image">
-                        <i class="fas fa-bug fa-3x"></i>
-                    </div>
-                    <h3>Slugs & Snails</h3>
-                    <p><strong>Type:</strong> Mollusk Pest</p>
-                    <div class="affected-crops">
-                        <strong>Affects:</strong> Lettuce, Cabbage, Hostas, Seedlings
-                    </div>
-                    <p><strong>Description:</strong> Soft-bodied mollusks that chew irregular holes in leaves</p>
-                    <h4>Organic Solutions:</h4>
-                    <ul class="solution-list">
-                        <li>Set up beer traps</li>
-                        <li>Use copper tape barriers</li>
-                        <li>Apply diatomaceous earth around plants</li>
-                        <li>Hand-pick in evening hours</li>
-                    </ul>
-                </div>
+        <div class="database-container">
+            <div class="pest-grid" id="pestGrid">
+                <!-- Pest cards will be generated here -->
             </div>
 
             <div class="prevention-tips">
-                <h2>General Prevention Tips</h2>
-                <ul class="solution-list">
-                    <li>Practice crop rotation annually</li>
-                    <li>Maintain proper plant spacing</li>
-                    <li>Use clean, disease-free seeds</li>
-                    <li>Water in the morning</li>
-                    <li>Remove infected plant material</li>
-                    <li>Encourage beneficial insects</li>
-                    <li>Keep garden clean of debris</li>
+                <h2><i class="fas fa-shield-alt"></i> General Prevention Tips</h2>
+                <ul class="prevention-list">
+                    <li>Practice crop rotation annually to prevent soil-borne diseases</li>
+                    <li>Maintain proper plant spacing for good air circulation</li>
+                    <li>Use clean, disease-free seeds and plants</li>
+                    <li>Water at the base of plants to keep foliage dry</li>
+                    <li>Remove infected plant material promptly</li>
+                    <li>Encourage beneficial insects that prey on pests</li>
+                    <li>Keep garden clean of debris where pests can overwinter</li>
+                    <li>Use row covers to protect plants from insect pests</li>
+                    <li>Test soil regularly and maintain proper pH levels</li>
+                    <li>Choose disease-resistant plant varieties when possible</li>
                 </ul>
             </div>
         </div>
-    </div>
-
+<button class="logout-btn" onclick="logoutUser()">Logout</button>
     <script>
+        function logoutUser() {
+            fetch('/accounts/logout/', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url; // Redirect to login page
+                }
+            })
+            .catch(error => {
+                console.error('Error during logout:', error);
+            });
+        }
+        
+        // Optional: Check auth status periodically
+        setInterval(() => {
+            fetch('/accounts/check_auth/', {
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.authenticated) {
+                    window.location.href = '/accounts/login/';
+                }
+            });
+        }, 300000);
         // Page Navigation
         function showPage(pageId) {
             // Hide all pages
@@ -938,23 +1447,273 @@
         });
 
         // Search functionality for pest database
-        document.querySelector('.search-btn').addEventListener('click', function() {
-            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
-            const pestCards = document.querySelectorAll('.pest-card');
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const pestGrid = document.getElementById('pestGrid');
+            const filterBtns = document.querySelectorAll('.filter-btn');
             
-            pestCards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+            // Comprehensive pest and disease data
+            const pestData = [
+                {
+                    name: "Aphids",
+                    type: "pest",
+                    icon: "fa-bug",
+                    affectedCrops: ["Tomatoes", "Peppers", "Kale", "Lettuce", "Roses", "Fruit Trees"],
+                    description: "Small, soft-bodied insects that suck plant sap, causing curling leaves and stunted growth. They secrete honeydew which promotes sooty mold growth.",
+                    solutions: [
+                        "Spray with neem oil solution (2 tbsp neem oil + 1 tsp soap + 1 gallon water)",
+                        "Introduce ladybugs or lacewings which are natural predators",
+                        "Use insecticidal soap spray",
+                        "Plant companion plants like marigolds, garlic, or chives",
+                        "Blast with strong water spray to dislodge from plants"
+                    ]
+                },
+                {
+                    name: "Powdery Mildew",
+                    type: "disease",
+                    icon: "fa-leaf",
+                    affectedCrops: ["Squash", "Cucumbers", "Zucchini", "Pumpkins", "Grapes", "Roses"],
+                    description: "Fungal disease appearing as white powdery spots on leaves and stems. Thrives in humid conditions with poor air circulation.",
+                    solutions: [
+                        "Spray with baking soda solution (1 tbsp baking soda + 1/2 tsp soap + 1 gallon water)",
+                        "Improve air circulation around plants",
+                        "Water at base of plants, avoid wetting foliage",
+                        "Use milk spray (1 part milk to 9 parts water)",
+                        "Apply sulfur-based fungicides as prevention"
+                    ]
+                },
+                {
+                    name: "Tomato Hornworm",
+                    type: "pest",
+                    icon: "fa-caterpillar",
+                    affectedCrops: ["Tomatoes", "Peppers", "Eggplants", "Potatoes"],
+                    description: "Large green caterpillars with white markings that can quickly defoliate plants. They blend in with foliage and are often hard to spot.",
+                    solutions: [
+                        "Hand-pick caterpillars (best done at night with UV light)",
+                        "Use BT (Bacillus thuringiensis) spray",
+                        "Encourage parasitic wasps that use hornworms as hosts",
+                        "Plant basil as companion plant to deter them",
+                        "Till soil in spring to destroy overwintering pupae"
+                    ]
+                },
+                {
+                    name: "Early Blight",
+                    type: "disease",
+                    icon: "fa-tree",
+                    affectedCrops: ["Tomatoes", "Potatoes", "Eggplants"],
+                    description: "Fungal disease causing dark spots with concentric rings on lower leaves, which eventually yellow and die. Spreads in warm, humid weather.",
+                    solutions: [
+                        "Apply copper-based fungicides",
+                        "Remove and destroy infected leaves",
+                        "Mulch around plants to prevent soil splashing",
+                        "Practice crop rotation (3-4 years between nightshades)",
+                        "Choose resistant varieties like 'Mountain Pride' or 'Legend'"
+                    ]
+                },
+                {
+                    name: "Slugs & Snails",
+                    type: "pest",
+                    icon: "fa-slug",
+                    affectedCrops: ["Lettuce", "Cabbage", "Hostas", "Strawberries", "Seedlings"],
+                    description: "Mollusks that feed on plant leaves, creating irregular holes. They are most active at night and in moist conditions.",
+                    solutions: [
+                        "Set up beer traps (containers sunk to ground level filled with beer)",
+                        "Use copper tape barriers around beds (creates electrical charge)",
+                        "Apply diatomaceous earth around plants (reapply after rain)",
+                        "Hand-pick in evening hours with flashlight",
+                        "Encourage natural predators like birds, frogs, and ground beetles"
+                    ]
+                },
+                {
+                    name: "Blossom End Rot",
+                    type: "disease",
+                    icon: "fa-apple-alt",
+                    affectedCrops: ["Tomatoes", "Peppers", "Squash", "Watermelons"],
+                    description: "Physiological disorder causing dark, sunken spots on fruit bottoms. Caused by calcium deficiency often related to irregular watering.",
+                    solutions: [
+                        "Maintain consistent soil moisture (mulch helps)",
+                        "Test soil and add calcium if needed (crushed eggshells, lime)",
+                        "Avoid excessive nitrogen fertilization",
+                        "Choose resistant varieties",
+                        "Spray with calcium chloride solution (early in season)"
+                    ]
+                },
+                {
+                    name: "Cabbage Loopers",
+                    type: "pest",
+                    icon: "fa-worm",
+                    affectedCrops: ["Cabbage", "Broccoli", "Cauliflower", "Kale", "Brussels Sprouts"],
+                    description: "Green caterpillars that chew large holes in leaves. They move by arching their bodies, hence the name 'looper'.",
+                    solutions: [
+                        "Use floating row covers to prevent moth access",
+                        "Apply BT (Bacillus thuringiensis) spray",
+                        "Handpick caterpillars from plants",
+                        "Encourage parasitic wasps and other natural enemies",
+                        "Plant companion plants like thyme and mint to deter moths"
+                    ]
+                },
+                {
+                    name: "Rust Fungus",
+                    type: "disease",
+                    icon: "fa-circle",
+                    affectedCrops: ["Asparagus", "Beans", "Hollyhocks", "Roses", "Snapdragons"],
+                    description: "Fungal disease producing rusty-colored pustules on leaves and stems. Can cause premature leaf drop and reduced vigor.",
+                    solutions: [
+                        "Remove and destroy infected plant parts",
+                        "Improve air circulation around plants",
+                        "Avoid overhead watering to keep foliage dry",
+                        "Apply sulfur or copper-based fungicides",
+                        "Choose resistant varieties when available"
+                    ]
+                }
+            ];
+
+            // Display all pests initially
+            displayPests(pestData);
+
+            // Search functionality
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
                 }
             });
+
+            // Filter functionality
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    let filteredPests = [];
+                    
+                    if (filter === 'all') {
+                        filteredPests = pestData;
+                    } else if (filter === 'pest' || filter === 'disease') {
+                        filteredPests = pestData.filter(pest => pest.type === filter);
+                    } else {
+                        filteredPests = pestData.filter(pest => 
+                            pest.affectedCrops.some(crop => 
+                                crop.toLowerCase().includes(filter.toLowerCase())
+                            )
+                        );
+                    }
+                    
+                    displayPests(filteredPests);
+                });
+            });
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                if (searchTerm === '') {
+                    displayPests(pestData);
+                    return;
+                }
+                
+                const filteredPests = pestData.filter(pest => 
+                    pest.name.toLowerCase().includes(searchTerm) ||
+                    pest.type.toLowerCase().includes(searchTerm) ||
+                    pest.description.toLowerCase().includes(searchTerm) ||
+                    pest.affectedCrops.some(crop => crop.toLowerCase().includes(searchTerm)) ||
+                    pest.solutions.some(solution => solution.toLowerCase().includes(searchTerm))
+                );
+                
+                displayPests(filteredPests);
+            }
+
+            function displayPests(pests) {
+                pestGrid.innerHTML = '';
+                
+                if (pests.length === 0) {
+                    pestGrid.innerHTML = '<div class="no-results"><i class="fas fa-search fa-3x"></i><h3>No pests or diseases found</h3><p>Try a different search term or filter</p></div>';
+                    return;
+                }
+                
+                pests.forEach(pest => {
+                    const pestCard = document.createElement('div');
+                    pestCard.classList.add('pest-card');
+                    
+                    pestCard.innerHTML = `
+                        <div class="pest-image">
+                            <i class="fas ${pest.icon}"></i>
+                        </div>
+                        <span class="pest-type">${pest.type === 'pest' ? 'Insect Pest' : 'Plant Disease'}</span>
+                        <h3>${pest.name}</h3>
+                        <div class="affected-crops">
+                            <strong>Affects:</strong> ${pest.affectedCrops.join(', ')}
+                        </div>
+                        <p class="pest-description">${pest.description}</p>
+                        <h4>Treatment Solutions:</h4>
+                        <ul class="solution-list">
+                            ${pest.solutions.map(solution => `<li>${solution}</li>`).join('')}
+                        </ul>
+                    `;
+                    
+                    pestGrid.appendChild(pestCard);
+                });
+            }
         });
 
-        // Enhanced crop data with icons and more vegetables
-        const cropData = {
-            "Tomato": {
+        // Location detection function
+        function detectLocation() {
+            const loadingElement = document.getElementById('location-loading');
+            const errorElement = document.getElementById('location-error');
+            
+            // Show loading indicator
+            loadingElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            
+            if (!navigator.geolocation) {
+                // Geolocation is not supported
+                loadingElement.style.display = 'none';
+                errorElement.style.display = 'block';
+                errorElement.innerHTML = '<p>Geolocation is not supported by your browser. Please enter your location manually.</p>';
+                return;
+            }
+            
+            // Get current position
+            navigator.geolocation.getCurrentPosition(
+                // Success callback
+                function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    
+                    // Reverse geocode to get location name
+                    reverseGeocode(latitude, longitude);
+                },
+                // Error callback
+                function(error) {
+                    loadingElement.style.display = 'none';
+                    errorElement.style.display = 'block';
+                    
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorElement.innerHTML = '<p>Location access was denied. Please allow location access or enter your location manually.</p>';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorElement.innerHTML = '<p>Location information is unavailable. Please try again or enter your location manually.</p>';
+                            break;
+                        case error.TIMEOUT:
+                            errorElement.innerHTML = '<p>Location request timed out. Please try again or enter your location manually.</p>';
+                            break;
+                        default:
+                            errorElement.innerHTML = '<p>An unknown error occurred. Please try again or enter your location manually.</p>';
+                            break;
+                    }
+                },
+                // Options
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 60000
+                }
+            );
+        }
+           const cropData = {
+            "Rice (paddy if fields allow)": {
                 "icon": "fa-apple-alt",
                 "soilTypes": ["Loam", "Sandy Loam"],
                 "soilPH": "6.0-6.8",
@@ -978,7 +1737,7 @@
                     "Harvest when fully colored but still firm"
                 ]
             },
-            "Carrot": {
+            "Taro": {
                 "icon": "fa-carrot",
                 "soilTypes": ["Sandy Loam"],
                 "soilPH": "6.0-6.8",
@@ -1001,7 +1760,7 @@
                     "Succession plant every 3 weeks"
                 ]
             },
-            "Tomato": {
+            "Celery": {
         "icon": "fa-apple-alt",
         "soilTypes": ["Loam", "Sandy Loam"],
         "soilPH": "6.0-6.8",
@@ -1676,6 +2435,323 @@
                 }
             });
         {% endif %}
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthSelect = document.getElementById('month-select');
+            monthSelect.innerHTML = `
+    <option value="0">January 2025</option>
+    <option value="1">February 2025</option>
+    <option value="2">March 2025</option>
+    <option value="3">April 2025</option>
+    <option value="4">May 2025</option>
+    <option value="5">June 2025</option>
+    <option value="6">July 2025</option>
+    <option value="7">August 2025</option>
+    <option value="8" selected>September 2025</option>
+    <option value="9">October 2025</option>
+    <option value="10">November 2025</option>
+    <option value="11">December 2025</option>
+`;
+
+            const calendarDays = document.getElementById('calendar-days');
+            const monthTitle = document.querySelector('.month-title');
+            
+            // Planting data for different months
+            // Planting data for different months
+// 2025-specific planting data
+const plantingData2025 = {
+    0: { // January 2025
+        6: ["Plan garden layout", "Order seeds"],
+        13: ["Start onions indoors", "Start leeks indoors"],
+        20: ["Start broccoli indoors", "Start cabbage indoors"],
+        27: ["Start celery indoors", "Start herbs indoors"]
+    },
+    1: { // February 2025
+        3: ["Start peppers indoors", "Start eggplants indoors"],
+        10: ["Start tomatoes indoors", "Start lettuce indoors"],
+        17: ["Start kale indoors", "Start Brussels sprouts indoors"],
+        24: ["Start perennial flowers indoors", "Prune fruit trees"]
+    },
+    2: { // March 2025
+        3: ["Direct sow peas", "Direct sow spinach"],
+        10: ["Start cauliflower indoors", "Start broccoli outdoors"],
+        17: ["Direct sow carrots", "Direct sow beets"],
+        24: ["Plant potatoes", "Direct sow radishes"],
+        31: ["Direct sow parsnips", "Direct sow turnips"]
+    },
+    3: { // April 2025
+        7: ["Direct sow lettuce", "Direct sow kale"],
+        14: ["Plant asparagus crowns", "Plant berry bushes"],
+        21: ["Direct sow beans", "Direct sow corn"],
+        28: ["Direct sow zucchini", "Direct sow cucumbers"]
+    },
+    4: { // May 2025
+        5: ["Plant tomatoes outdoors", "Plant peppers outdoors"],
+        12: ["Plant eggplants outdoors", "Plant basil outdoors"],
+        19: ["Direct sow squash", "Direct sow melons"],
+        26: ["Direct sow beans", "Direct sow sunflowers"]
+    },
+    5: { // June 2025
+        2: ["Direct sow beans", "Direct sow corn"],
+        9: ["Direct sow cucumbers", "Direct sow squash"],
+        16: ["Plant sweet potatoes", "Direct sow pumpkins"],
+        23: ["Direct sow beets", "Direct sow carrots"],
+        30: ["Direct sow lettuce", "Direct sow kale"]
+    },
+    6: { // July 2025
+        7: ["Direct sow beans", "Direct sow corn"],
+        14: ["Direct sow cucumbers", "Direct sow zucchini"],
+        21: ["Direct sow carrots", "Direct sow beets"],
+        28: ["Start fall broccoli indoors", "Start fall cabbage indoors"]
+    },
+    7: { // August 2025
+        4: ["Direct sow lettuce", "Direct sow spinach"],
+        11: ["Direct sow radishes", "Direct sow turnips"],
+        18: ["Direct sow kale", "Direct sow collards"],
+        25: ["Plant garlic", "Direct sow peas"]
+    },
+    8: { // September 2025
+        1: ["Lettuce", "Spinach", "Radishes"],
+        8: ["Kale", "Swiss Chard"],
+        15: ["Garlic", "Onions"],
+        22: ["Peas", "Broad Beans"],
+        29: ["Spring Onions", "Arugula"]
+    },
+    9: { // October 2025
+        6: ["Turnips", "Beets"],
+        13: ["Winter Lettuce", "Mustard Greens"],
+        20: ["Parsnips", "Carrots"],
+        27: ["Garlic", "Shallots"]
+    },
+    10: { // November 2025
+        3: ["Onion Sets", "Spring Onions"],
+        10: ["Spinach", "Winter Lettuce"],
+        17: ["Asian Greens", "Arugula"],
+        24: ["Broad Beans", "Peas"]
+    },
+    11: { // December 2025
+        1: ["Rhubarb", "Asparagus Crowns"],
+        8: ["Fruit Trees", "Berry Bushes"],
+        15: ["Hedging Plants", "Native Trees"],
+        22: ["Plan next year's garden", "Clean and store tools"],
+        29: ["Order seed catalogs", "Plan crop rotation"]
+    }
+};
+
+// Weather conditions for different months
+// Weather conditions for 2025
+const weatherConditions2025 = {
+    0: "Cold, potential for snow and frost",
+    1: "Cold, shorter days, some frost",
+    2: "Transitional, frost still possible",
+    3: "Mild, increasing daylight, last frost dates vary",
+    4: "Warming, good growing conditions",
+    5: "Warm, longer days, ideal for growth",
+    6: "Hot, peak growing season",
+    7: "Warm to hot, harvest season begins",
+    8: "Mild temperatures, increasing rainfall",
+    9: "Cooling temperatures, first frost possible",
+    10: "Cool, frost likely in some regions",
+    11: "Cold, ground may freeze"
+};
+
+// Additional information for each month
+const monthDetails = {
+    0: {
+        name: "January",
+        tip: "Focus on planning and preparing for the upcoming season. Start seeds indoors for slow-growing plants."
+    },
+    1: {
+        name: "February",
+        tip: "Continue starting seeds indoors. Prune dormant trees and shrubs before spring growth begins."
+    },
+    2: {
+        name: "March",
+        tip: "As soil becomes workable, direct sow cold-hardy crops. Watch for last frost dates in your area."
+    },
+    3: {
+        name: "April",
+        tip: "Spring is here! Plant cool-season crops directly in the garden. transplant seedlings started indoors."
+    },
+    4: {
+        name: "May",
+        tip: "Plant warm-season crops after danger of frost has passed. Soil is warming up for optimal growth."
+    },
+    5: {
+        name: "June",
+        tip: "Ideal planting time for most crops. Ensure consistent watering as temperatures rise."
+    },
+    6: {
+        name: "July",
+        tip: "Continue succession planting for continuous harvest. Provide shade for heat-sensitive plants."
+    },
+    7: {
+        name: "August",
+        tip: "Plant fall crops and begin preparing for autumn harvest. Monitor water needs during hot days."
+    },
+    8: {
+        name: "September",
+        tip: "Ideal time for planting cool-season crops. Days are shorter and temperatures are moderating."
+    },
+    9: {
+        name: "October",
+        tip: "Plant garlic and spring bulbs. Protect tender plants from early frosts."
+    },
+    10: {
+        name: "November",
+        tip: "Finish garden cleanup and planting bulbs. Mulch beds to protect plants through winter."
+    },
+    11: {
+        name: "December",
+        tip: "Plan for next season while gardens are dormant. Protect plants from harsh winter conditions."
+    }
+};
+            
+            // Generate calendar for current month
+           // Generate calendar for 2025
+function generateCalendar(month) {
+    // Clear previous calendar
+    calendarDays.innerHTML = '';
+    
+    // Update month title
+    const monthNames = ["January 2025", "February 2025", "March 2025", "April 2025", 
+                       "May 2025", "June 2025", "July 2025", "August 2025", 
+                       "September 2025", "October 2025", "November 2025", "December 2025"];
+    monthTitle.textContent = `${monthNames[month]} Planting Calendar`;
+    
+    // Set year to 2025
+    const year = 2025;
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    // Add empty days for first week
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.classList.add('calendar-day', 'empty-day');
+        emptyDay.innerHTML = '<p>No planting activities</p>';
+        calendarDays.appendChild(emptyDay);
+    }
+    
+    // Add days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('calendar-day');
+        
+        // Get day of week
+        const dayOfWeek = new Date(year, month, day).getDay();
+        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        
+        // Day header
+        const dayHeader = document.createElement('div');
+        dayHeader.classList.add('day-header');
+        dayHeader.innerHTML = `
+            <span class="day-number">${day}</span>
+            <span class="day-name">${dayNames[dayOfWeek]}</span>
+        `;
+        
+        dayElement.appendChild(dayHeader);
+        
+        // Add planting suggestions if available
+        if (plantingData2025[month] && plantingData2025[month][day]) {
+            const suggestionsDiv = document.createElement('div');
+            suggestionsDiv.classList.add('planting-suggestions');
+            
+            plantingData2025[month][day].forEach(plant => {
+                const suggestion = document.createElement('div');
+                suggestion.classList.add('suggestion-item');
+                suggestion.innerHTML = `<i class="fas fa-seedling"></i> ${plant}`;
+                suggestionsDiv.appendChild(suggestion);
+            });
+            
+            dayElement.appendChild(suggestionsDiv);
+        } else {
+            dayElement.innerHTML += '<p class="empty-day">No planting recommendations</p>';
+        }
+        
+        // Add weather indicator for the 15th of each month
+        if (day === 15 && weatherConditions2025[month]) {
+            const weatherDiv = document.createElement('div');
+            weatherDiv.classList.add('weather-indicator');
+            weatherDiv.innerHTML = `<i class="fas fa-cloud-sun"></i> ${weatherConditions2025[month]}`;
+            dayElement.appendChild(weatherDiv);
+        }
+        
+        calendarDays.appendChild(dayElement);
+    }
+}
+            
+            // Initial calendar generation for September
+            generateCalendar(8); // September is month 8 (0-indexed)
+            
+            // Update calendar when month changes
+            monthSelect.addEventListener('change', function() {
+                generateCalendar(parseInt(this.value));
+            });
+            
+            // View toggle functionality
+            const viewButtons = document.querySelectorAll('.view-btn');
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    viewButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real app, this would switch between month and list views
+                    alert(`Switched to ${this.textContent} - This would show a different layout in a complete implementation`);
+                });
+            });
+        });
+
+        
+        // Reverse geocode coordinates to get location name
+        function reverseGeocode(lat, lng) {
+            const loadingElement = document.getElementById('location-loading');
+            const errorElement = document.getElementById('location-error');
+            
+            // Using OpenStreetMap Nominatim API for reverse geocoding
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    loadingElement.style.display = 'none';
+                    
+                    if (data && data.display_name) {
+                        // Extract city/town name
+                        let locationName = data.display_name.split(',')[0];
+                        
+                        // For some locations, the town might be in the second part
+                        if (data.address) {
+                            if (data.address.city) locationName = data.address.city;
+                            else if (data.address.town) locationName = data.address.town;
+                            else if (data.address.village) locationName = data.address.village;
+                            else if (data.address.municipality) locationName = data.address.municipality;
+                        }
+                        
+                        // Set the location value and submit the form
+                        document.getElementById('id_location').value = locationName;
+                        document.querySelector('form').submit();
+                    } else {
+                        errorElement.style.display = 'block';
+                        errorElement.innerHTML = '<p>Could not determine your location name. Please enter it manually.</p>';
+                    }
+                })
+                .catch(error => {
+                    loadingElement.style.display = 'none';
+                    errorElement.style.display = 'block';
+                    errorElement.innerHTML = '<p>Error getting location information. Please try again or enter your location manually.</p>';
+                });
+        }
+        // Add this to your calendar generation function
+const monthTip = document.createElement('div');
+monthTip.classList.add('month-tip');
+monthTip.innerHTML = `<i class="fas fa-lightbulb"></i> <strong>Gardening Tip:</strong> ${monthDetails[month].tip}`;
+calendarContainer.insertBefore(monthTip, calendarDays);
+// Update the header to show it's for 2025
+const header = document.querySelector('header');
+header.innerHTML = `
+    <h1><i class="fas fa-seedling"></i> 2025 Planting Calendar</h1>
+    <p class="subtitle">Plan your garden based on optimal planting times for 2025</p>
+    <div class="year-badge">SPECIFICALLY FOR 2025</div>
+`;
+
+
     </script>
 </body>
 </html>
