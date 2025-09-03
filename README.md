@@ -165,10 +165,10 @@ The Farm Weather Dashboard enables farmers to make **informed decisions** about:
 
 This helps maximize yield and reduce losses caused by climate variability.  
 
-`![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)` 
-`![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)`
-`![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)`
-`![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)`
+![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)
+![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)
+![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)
+![Farm Weather Dashboard](docs/screenshots/farm_weather_dashboard.png)`
 
 
 ### 6. **Smart Planting Calendar**  
@@ -179,18 +179,18 @@ Once a month is selected:
 1.The system highlights which days are optimal for planting specific crops.
 2.It provides information on expected temperature conditions, such as days with mild temperatures suitable for planting.
 3.Users can use this guidance to schedule planting activities to maximize crop growth and minimize risks associated with adverse weather. 
-`![Planting Calendar](docs/screenshots/planting_calendar.png)`
-`![Planting Calendar](docs/screenshots/planting_calendar.png)`
-`![Planting Calendar](docs/screenshots/planting_calendar.png)`
+![Planting Calendar](docs/screenshots/planting_calendar.png)
+![Planting Calendar](docs/screenshots/planting_calendar.png)
+![Planting Calendar](docs/screenshots/planting_calendar.png)
 
 ---
 
 ### 5. **Pest & Disease Database**  
 - Search pests and diseases affecting specific crops.  
 - Shows prevention and treatment methods.  
-`![Pest Database](docs/screenshots/pest_database.png)`
-`![Pest Database](docs/screenshots/pest_database.png)`
-`![Pest Database](docs/screenshots/pest_database.png)` 
+![Pest Database](docs/screenshots/pest_database.png)
+![Pest Database](docs/screenshots/pest_database.png)
+![Pest Database](docs/screenshots/pest_database.png) 
 
 ---
 
