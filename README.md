@@ -1,20 +1,20 @@
-# 🌱 Smart Weather Advisory System
+# Smart Weather Advisory System
 
-## 📌 Problem Statement  
+## Problem Statement  
 Agriculture in South Africa is highly vulnerable to climate change. Farmers face unpredictable weather patterns such as sudden rainfall, droughts, frost, and heatwaves, which directly affect crop yields and income. Without localized and timely weather information, they risk planting unsuitable crops, wasting resources, and suffering economic losses.
 
-### ✅ Our Solution  
+###  Our Solution  
 We developed a **Smart Weather Advisory System**, a web-based agricultural decision-support platform that empowers farmers with:  
-- 🌦 **Real-time weather forecasts** (via OpenWeatherMap API)  
-- 🌱 **Crop recommendations** (based on soil, weather, and region)  
-- 📅 **Smart planting calendars**  
-- 🐛 **Pest & disease database** with prevention strategies  
-- 🤖 **AI-powered chatbot** for instant farming guidance  
-- 📓 **Garden Journal** for tracking farm activities  
+-  **Real-time weather forecasts** (via OpenWeatherMap API)  
+-  **Crop recommendations** (based on soil, weather, and region)  
+-  **Smart planting calendars**  
+-  **Pest & disease database** with prevention strategies  
+-  **AI-powered chatbot** for instant farming guidance  
+-  **Garden Journal** for tracking farm activities  
 
 ---
 
-## 🏗 System Design  
+##  System Design  
 Our system follows a **3-Tier Architecture**:  
 
 - **Client Tier**: Web browser (HTML, CSS, JS, Bootstrap, Chart.js)  
@@ -142,7 +142,7 @@ Our system includes multiple interactive pages designed for farmers.
 
 ---
 
-### 6. 🌾 Farm Weather Dashboard  
+### 6. Farm Weather Dashboard  
 
 The **Farm Weather Dashboard** allows users to access personalized, weather-based crop recommendations. Farmers can either:  
 - Manually enter their farm location, or  
@@ -152,12 +152,12 @@ The **Farm Weather Dashboard** allows users to access personalized, weather-base
 1. The dashboard displays the **daily weather forecast for the next six days**.  
 2. The system suggests **crops that grow best under the predicted weather conditions**.  
 3. When a user selects a crop of interest:  
-   - 🌱 The **soil type** for their location is displayed.  
-   - 🧪 **Soil pH** and recommended **watering methods** are provided.  
-   - 📅 A **growth timeline** is shown, from seed germination → sprouting → vegetative → flowering → fruiting → harvest.  
-   - 🌾 Farming **tips and best practices** are provided for successful crop growth.  
+   -  The **soil type** for their location is displayed.  
+   -  **Soil pH** and recommended **watering methods** are provided.  
+   -  A **growth timeline** is shown, from seed germination → sprouting → vegetative → flowering → fruiting → harvest.  
+   -  Farming **tips and best practices** are provided for successful crop growth.  
 
-#### 🎯 Purpose  
+#### Purpose  
 The Farm Weather Dashboard enables farmers to make **informed decisions** about:  
 - Crop selection  
 - Planting schedules  
